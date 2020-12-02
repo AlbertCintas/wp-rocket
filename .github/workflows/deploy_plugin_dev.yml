@@ -15,5 +15,5 @@ jobs:
       - name: test
         run: |
           # To keep format, we cut the first character of the tag ('v').
-          export KK=$(echo ${ GITHUB_REF#refs/*/ } | cut -c 2-)
+          export KK=$(echo ${GITHUB_REF##*v} | cut -c 2-)
           echo $KK
