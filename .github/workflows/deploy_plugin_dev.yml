@@ -11,4 +11,4 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: test
-        run: echo ${GITHUB_REF#refs/*/}
+        run: echo ${GITHUB_REF#refs/v*/}
