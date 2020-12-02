@@ -13,4 +13,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: test
-        run: echo ${github.head_ref}
+        run: |
+          # To keep format, we cut the first character of the tag ('v').
+          export KK=$(echo ${ GITHUB_REF#refs/*/ } | cut -c 2-)
+          echo $KK
