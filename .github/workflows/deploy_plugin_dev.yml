@@ -30,13 +30,13 @@ jobs:
         run: composer install --no-scripts --no-dev
   
       - name: Zip Folder
-        run: zip -r /tmp/__wp-rocket__${{ GITHUB_REF }}.zip .
+        run: zip -r /tmp/__wp-rocket__${{ ${{ github.ref }} }}.zip .
 
       - name: Upload by sFTP
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.DEPLOY_PLUGIN_HOST }}
           username: ${{ secrets.DEPLOY_PLUGIN_USER }}
-          source: "/tmp/__wp-rocket__${{ GITHUB_REF }}.zip"
+          source: "/tmp/__wp-rocket__${{ github.ref }}.zip"
           target: "/var/www/wp-rocket.me/api/wp-rocket/versioning"
           key: ${{ secrets.DEPLOY_PLUGIN_SSH_KEY }}
