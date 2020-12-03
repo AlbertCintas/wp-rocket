@@ -39,13 +39,13 @@ jobs:
       - name: Upload Zip
         uses: iksaku/openstack-swift-action@v3.8.1
         env:
-          OS_AUTH_URL: 'https://auth.cloud.ovh.net/v3'
+          OS_AUTH_URL: https://auth.cloud.ovh.net/v3
           OS_PASSWORD: ${{ secrets.OBJECT_STORAGE_PASSWORD }}
           OS_PROJECT_NAME: ${{ secrets.OBJECT_STORAGE_PROJECT }}
           OS_PROJECT_ID: ${{ secrets.OBJECT_STORAGE_PROJECT_ID }}
-          OS_REGION_NAME: 'SBG5'
+          OS_REGION_NAME: "SBG5"
           OS_USERNAME: ${{ secrets.OBJECT_STORAGE_USERNAME }}
-          OS_USER_DOMAIN_NAME: 'Default'
+          OS_USER_DOMAIN_NAME: "Default"
         with:
           args: |
             upload rocket-plugin /tmp/__wp-rocket__${GITHUB_REF##*v}.zip
