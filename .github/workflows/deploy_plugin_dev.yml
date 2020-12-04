@@ -50,10 +50,11 @@ jobs:
           OS_REGION_NAME: "SBG"
           OS_USERNAME: ${{ secrets.OBJECT_STORAGE_USERNAME }}
           OS_USER_DOMAIN_NAME: "Default"
+        working-directory: /tmp
         run: |
-          env
-          /usr/bin/swift upload rocket-plugin /tmp/__wp-rocket__${GITHUB_REF##*v}.zip
+          /usr/bin/swift upload rocket-plugin __wp-rocket__${GITHUB_REF##*v}.zip
           /usr/bin/swift post --header "X-Delete-After: 600" rocket-plugin __wp-rocket__${GITHUB_REF##*v}.zip
+        
             
       # Call the webhook on AWX to fetch and deploy the zip
       - name: Invoke deployment hook
